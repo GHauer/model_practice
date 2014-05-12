@@ -27,13 +27,25 @@ class QuestionsController < ApplicationController
   def question_2
     # Who directed the longest movie on the list?
 
-    # the_longest_movie_director_id = Movie.order("duration ASC").last.director_id
+    @director_of_longest_movie = Movie.order("duration DESC").first.director_id
 
-    # @director_of_longest_movie = ???
-  end
+
+   end
 
   def question_3
     # Which director has the most movies on the list?
+
+ movie_counts = []
+
+    Director.all.each do |the_director|
+      number_of_movies_directed_by_the_director = the_director.movies.count
+
+      movie_counts.push(number_of_movies_directed_by_the_director)
+    end
+
+    @most_number_of_movies_by_a_single_director = movie_counts.max
+
+    @director_with_the_most_movies = @most_number_of_movies_by_a_single_director
 
   # movie_counts = []
 
@@ -44,7 +56,7 @@ class QuestionsController < ApplicationController
 
   #   @most_number_of_movies_by_a_single_director = movie_counts.max.
 
-  #   @director_with_the_most_movies =  @most_number_of_movies_by_a_single_director
+
 
 
 

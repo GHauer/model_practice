@@ -32,5 +32,5 @@ end
   #   @pval = params[:present_value].to_f
   #   @payment = @pval * (@rate * ((1 + @rate) ** @nper) / ((1 + @rate) ** @nper - 1))
   #   @answer = @payment.to_i
-
+  end
 end
