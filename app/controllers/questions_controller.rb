@@ -17,25 +17,26 @@ class QuestionsController < ApplicationController
       if the_movie.year.to_i > most_recent_movie[:year]
         most_recent_movie = { :year => the_movie.year.to_i, :title => the_movie.title }
 
+      end
     end
 
     @most_recent_movie_for_second_actor = most_recent_movie[:title]
-
-
   end
+
 
   def question_2
     # Who directed the longest movie on the list?
 
-    @director_of_longest_movie = Movie.order("duration DESC").first.director_id
+    @director_of_longest_movie = Movie.order("duration DESC").first.director.name
 
 
    end
 
+
   def question_3
     # Which director has the most movies on the list?
 
- movie_counts = []
+  movie_counts = []
 
     Director.all.each do |the_director|
       number_of_movies_directed_by_the_director = the_director.movies.count
@@ -57,16 +58,11 @@ class QuestionsController < ApplicationController
   #   @most_number_of_movies_by_a_single_director = movie_counts.max.
 
 
-
-
-
-  end
-
-
-
-
     # @director_with_the_most_movies = ???
   end
+
+
+
 
   def question_4
     # Which actor has been in the most movies on the list?
