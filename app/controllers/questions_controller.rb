@@ -38,15 +38,27 @@ class QuestionsController < ApplicationController
 
   movie_counts = []
 
-    Director.all.each do |the_director|
-      number_of_movies_directed_by_the_director = the_director.movies.count
+  the_top_director = Director.new
 
-      movie_counts.push(number_of_movies_directed_by_the_director)
+  Director.all.each do |director|
+    if the_top_director.movies.count < director.movies.count
+      the_top_director = director
     end
+  end
 
-    @most_number_of_movies_by_a_single_director = movie_counts.max
+  @director_with_the_most_movies = the_top_director.name
 
-    @director_with_the_most_movies = @most_number_of_movies_by_a_single_director
+
+
+    # Director.all.each do |the_director|
+    #   number_of_movies_directed_by_the_director = the_director.movies.count
+
+    #   movie_counts.push(number_of_movies_directed_by_the_director)
+    # end
+
+    # @most_number_of_movies_by_a_single_director = movie_counts.max
+
+    # @director_with_the_most_movies = @most_number_of_movies_by_a_single_director
 
   # movie_counts = []
 
@@ -69,6 +81,8 @@ class QuestionsController < ApplicationController
     # (If there's a tie, any one of them is fine)
 
     # Your Ruby goes here.
+
+
 
     # @actor_with_the_most_movies = ???
   end
