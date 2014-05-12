@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     the_actors_movies.each do |the_movie|
       if the_movie.year.to_i > most_recent_movie[:year]
         most_recent_movie = { :year => the_movie.year.to_i, :title => the_movie.title }
-      end
+
     end
 
     @most_recent_movie_for_second_actor = most_recent_movie[:title]
@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   def question_2
     # Who directed the longest movie on the list?
 
-    # Your Ruby goes here.
+    # the_longest_movie_director_id = Movie.order("duration ASC").last.director_id
 
     # @director_of_longest_movie = ???
   end
@@ -35,7 +35,23 @@ class QuestionsController < ApplicationController
   def question_3
     # Which director has the most movies on the list?
 
-    # Your Ruby goes here.
+  # movie_counts = []
+
+  # Director.all.each do |the_director|
+  #   number_of_movies_directed_by_the_director = the_director.movies.count
+
+  #   movie_counts.push(number_of_movies_directed_by_the_director)
+
+  #   @most_number_of_movies_by_a_single_director = movie_counts.max.
+
+  #   @director_with_the_most_movies =  @most_number_of_movies_by_a_single_director
+
+
+
+  end
+
+
+
 
     # @director_with_the_most_movies = ???
   end
