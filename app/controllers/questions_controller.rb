@@ -82,9 +82,19 @@ class QuestionsController < ApplicationController
 
     # Your Ruby goes here.
 
+  movie_counts = []
+
+  the_top_actor = Actor.new
+
+  Actor.all.each do |actor|
+    if the_top_actor.movies.count < actor.movies.count
+      the_top_actor = actor
+    end
+  end
+
+  @actor_with_the_most_movies = the_top_actor.name
 
 
-    # @actor_with_the_most_movies = ???
   end
 
   def question_5
