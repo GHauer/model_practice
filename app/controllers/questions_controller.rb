@@ -103,7 +103,28 @@ class QuestionsController < ApplicationController
     # Which actor/director pair has the most movies on the list?
     # (If there's a tie, any pair of them is fine)
 
-    # Your Ruby goes here.
+    most_movies_together = 0
+ @actor = nil
+ @director = nil
+
+ Actor.all.each do |actor|
+   this_actors_most_movies_with_one_director = 0
+   this_actors_favorite_director = nil
+
+   actor.movies.each do |movie|
+     number_of_movies_with_same_director_as_this_one = actor.movies.where(:director_id => movie.director_id).count
+
+     if this_actors_most_movies_with_one_director < number_of_movies_with_same_director_as_this_one
+       this_actors_most_movies_with_one_director = number_of_movies_with_same_director_as_this_one
+       this_actors_favorite_director = movie.director
+     end
+   end
+
+   if most_movies_together < this_actors_most_movies_with_one_director
+     most_movies_together = this_actors_most_movies_with_one_director
+     @director = this_actors_favorite_director
+     @actor = actor
+
 
     # @actor = ???
     # @director = ???
